@@ -22,3 +22,6 @@ insecure                # Allow all DB writes from clients (for prototyping)
 semantic:ui
 flemay:less-autoprefixer
 fourseven:scss
+iandouglas:accounts-ui-semantic-ui
+accounts-password
+iron:router
