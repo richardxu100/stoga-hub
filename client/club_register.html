@@ -1,24 +1,26 @@
-<template name="signup">
+<template name="club_register">
   <div class="ui stacked raised segment">
     <div class="ui centered grid">
       <h2 class="ui header">Register Your Club!</h2>
       <div class="row">
         <div class="eight wide column">
           <div class="ui input">
-            <input type="text" placeholder="Name of Club">
+            <input type="text" placeholder="Name of Club" id="club_name">
           </div>
           <div class="ui input">
-            <input type="text" placeholder="President">
+            <input type="text" placeholder="President" id="club_pres">
           </div>
           <div class="ui input">
-            <input type="text" placeholder="Email">
+            <input type="text" placeholder="School Email" id="email">
           </div>
-          <button class="ui green button">Submit</button>
+          <a href="/clubs_page">
+            <button class="js-register-club ui green button">Submit</button>
+          </a>
         </div>
         <div class="eight wide column">
           <div class="form">
             <div class="field">
-              <textarea placeholder="Description" rows="8"></textarea>
+              <textarea placeholder="Description" rows="8" id="club_desc"></textarea>
             </div>      
           </div>  
         </div>
