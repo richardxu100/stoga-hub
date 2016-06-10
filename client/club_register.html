@@ -3,6 +3,14 @@
     <div class="ui centered grid">
       <h2 class="ui header">Register Your Club!</h2>
       <div class="row">
+        {{#unless currentUser}}
+        <div class="ui warning message">
+          <!-- <i class="close icon"></i> -->
+          <div class="header">
+            You must login before creating a club, or it won't work!
+          </div>
+        </div>          
+        {{/unless}}
         <div class="eight wide column">
           <div class="ui input">
             <input type="text" placeholder="Name of Club" id="club_name">
@@ -23,7 +31,7 @@
               <textarea placeholder="Description" rows="8" id="club_desc"></textarea>
             </div>      
           </div>  
-        </div>
+        </div>        
       </div>
     </div>
   </div>
