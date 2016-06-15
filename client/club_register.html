@@ -1,38 +1,60 @@
 <template name="club_register">
   <div class="ui stacked raised segment">
-    <div class="ui centered grid">
-      <h2 class="ui header">Register Your Club!</h2>
-      <div class="row">
-        {{#unless currentUser}}
-        <div class="ui warning message">
-          <!-- <i class="close icon"></i> -->
-          <div class="header">
-            You must login before creating a club, or it won't work!
-          </div>
-        </div>          
-        {{/unless}}
-        <div class="eight wide column">
-          <div class="ui input">
-            <input type="text" placeholder="Name of Club" id="club_name">
-          </div>
-          <div class="ui input">
-            <input type="text" placeholder="President" id="club_pres">
-          </div>
-          <div class="ui input">
-            <input type="text" placeholder="School Email" id="email">
-          </div>
-          <a href="/clubs_page">
-            <button class="js-register-club ui green button">Submit</button>
-          </a>
-        </div>
-        <div class="eight wide column">
-          <div class="form">
-            <div class="field">
-              <textarea placeholder="Description" rows="8" id="club_desc"></textarea>
-            </div>      
-          </div>  
-        </div>        
-      </div>
+    <h2 class="ui centered header">Register your Club!</h2>
+    {{#unless currentUser}}
+    <div class="ui warning message">
+      <i class="close icon"></i>
+      <h4 class="ui centered header">
+      You must login before you can register a club!
+      </h4>
     </div>
+    {{/unless}}
+    <form class="ui form">
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>Club Name</label>
+            <input id="club_name" type="text" placeholder="Club Name">
+          </div>
+          <div class="field">
+            <label>Club President</label>
+            <input id="club_pres" type="text" placeholder="Club President">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <div class="fields">
+          <div class="twelve wide field">
+            <input id="email" type="text" placeholder="Email Address">
+          </div>
+          <div class="four wide field">
+            <input id="room_num" type="text"  placeholder="Room #">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Image Link</label>
+        <div class="fields">
+          <div class="twelve wide field">
+            <input id="img_link" type="text" placeholder="Ex. https://www.image-link.com">
+          </div>
+          <div class="four wide field">
+            <select id="club_day" class="ui fluid dropdown">
+              <option value="">Club Day</option>
+              <option value="m">Monday</option>
+              <option value="tu">Tuesday</option>
+              <option value="w">Wednesday</option>
+              <option value="th">Thursday</option>
+              <option value="f">Friday</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <textarea id="club_desc" placeholder="Club Description" cols="30" rows="10"></textarea>
+    </form>
+    <!-- <a href="/clubs_page"> -->
+      <button class="ui fluid green button js-register-club">Submit</button>      
+    <!-- </a> -->
   </div>
-</template>  
+</template>

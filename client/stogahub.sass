@@ -1,3 +1,5 @@
+$background-color: #ecf0f1
+
 p 
 	color: red
 
@@ -24,7 +26,7 @@ p
   max-width: 600px
   margin: 0 auto
   padding-top: 40px
-  margin-top: 200px
+  margin-top: 100px
   
   .ui.input
     margin-top: 20px
@@ -38,13 +40,60 @@ p
     height: 220px
     border-radius: 4px
     border: 1px solid rgba(34,36,38,.15)
+    resize: none
     
   button.ui.green.button
     margin-top: 20px
 
 body
-	background: #134E5E /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #134E5E , #71B280) /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #134E5E , #71B280) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: $background-color
+
+/* clubs_page sass */
+.pusher
+  height: 100vh
+  width: 100vw
+  background-image: url('https://images.unsplash.com/photo-1465152251391-e94453ee3f5a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=2f3699fc4dbc682fbecdc4fa4d5f6cad')
+  background-size: cover
+
+.ui.fluid.container
+  color: white
+  display: flex
+  justify-content: space-around
+  align-items: center
+  height: 100vh
+  
+  .ui.special.card
+    // margin-top: 50px
+    
+  .right
+    h1
+      color: white
+      // margin-top: 45px
+      font-size: 40px
+      background: rgba(0,0,0,.4)      
+      padding: 8px
+	
+    .down_arrow
+      height: 50px
+      width: 50px
+      border-radius: 2em
+      border: 2px solid white
+      top: 40vh
+      margin: 30px auto
+      display: flex
+      align-items: center
+      
+      i 
+        margin: auto
+
+/* club_filter sass */   
+.ui.centered.grid
+  margin: auto
+  
+  .ui.toggle.checkbox
+    margin: 5px
+    
+  .card
+    margin-left: 40px
 
 

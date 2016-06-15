@@ -1,6 +1,7 @@
 $(document).ready(function() {
-	//this isn't working for some reason
-	$('.close.icon').click(function() {
-		$('.ui.warning.message').css("display", "none");
-	});
+	//close a message
+	$('.message .close').on('click', function() {
+	    $(this).closest('.message').transition('fade');
+	  });	
+  $('select.dropdown').dropdown();
 });

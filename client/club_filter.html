@@ -1,0 +1,93 @@
+<!-- club_filter template includes the list of clubs in card format -->
+<template name="club_filter">
+	<div class="ui centered grid"> <!-- start of grid -->
+  <div class="row"> <!-- start of row -->
+
+    <div class="two wide column"> <!-- start of filter column -->
+			<h3 class="ui header">Club Filter</h3>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>Filter 1</label>
+      </div>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>Filter 2</label>
+      </div>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>Filter 3</label>
+      </div>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>Filter 4</label>
+      </div>    
+      <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>Filter 5</label>
+      </div>    
+      <div class="ui toggle checkbox">
+        <input type="checkbox" name="public">
+        <label>Filter 6</label>
+      </div>          
+      <!-- Days of the week -->
+	    <div class="ui checkbox">
+	      <input type="checkbox" name="example">
+	      <label>Monday</label>
+	    </div>  
+	    <div class="ui checkbox">
+	      <input type="checkbox" name="example">
+	      <label>Tuesday</label>
+	    </div>  
+	    <div class="ui checkbox">
+	      <input type="checkbox" name="example">
+	      <label>Wednesday</label>
+	    </div>  
+	    <div class="ui checkbox">
+	      <input type="checkbox" name="example">
+	      <label>Thursday</label>
+	    </div>        
+	    <div class="ui checkbox">
+	      <input type="checkbox" name="example">
+	      <label>Friday</label>
+	    </div>              
+    </div>
+    <div class="fourteen wide column"> <!-- start of cards column -->
+      <div class="ui centered special cards">
+      	{{#each clubs}}
+        <div class="card"> <!-- start of card -->
+	        <div class="content">
+	          <span class="meta">{{club_day}}</span>
+	          <div class="right floated meta">Room: {{room_num}}</div>
+	        </div>    
+	        <div class="blurring dimmable image">
+	          <div class="ui dimmer">
+	            <div class="content">
+	              <div class="center">
+	                <div class="ui inverted button">Join Club</div>
+	              </div>
+	            </div>
+	          </div>
+	          <img src="{{img_link}}">
+	        </div>
+	        <div class="content">
+	          <a class="header">{{club_name}}</a>
+	          <div class="meta">
+	            <span class="description">{{club_desc}}</span>
+	          </div>
+	        </div>
+	        <div class="extra content">
+	          <a>
+	            <i class="users icon"></i>
+	            0 Members
+	          </a>
+	          <div class="right floated content">
+	            <button class="ui blue inverted button">Join</button>
+	          </div>
+	        </div> 
+	      </div> <!-- end of card --> 
+	      {{/each}}
+    	</div>      
+  	</div> <!-- end of fourteen wide column -->    
+	</div> <!-- end of row -->
+</div> <!-- end of grid -->
+</template>
