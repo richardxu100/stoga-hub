@@ -51,10 +51,12 @@
 	      <label>Friday</label>
 	    </div>              
     </div>
-    <div class="fourteen wide column"> <!-- start of cards column -->
+
+    <!-- start of cards column -->
+    <div class="fourteen wide column"> 
       <div class="ui centered special cards">
       	{{#each clubs}}
-        <div class="card"> <!-- start of card -->
+        <div class="card" id="{{_id}}"> <!-- start of card -->
 	        <div class="content">
 	          <span class="meta">{{club_day}}</span>
 	          <div class="right floated meta">Room: {{room_num}}</div>
@@ -82,12 +84,15 @@
 	          </a>
 	          <div class="right floated content">
 	            <button class="ui blue inverted button">Join</button>
+	            <!-- {{#if same_user}} -->
+	            	<button class="js-del-club ui red inverted button">Delete</button>
+            	<!-- {{/if}} -->
 	          </div>
 	        </div> 
-	      </div> <!-- end of card --> 
+	      </div> <!-- / card --> 
 	      {{/each}}
     	</div>      
-  	</div> <!-- end of fourteen wide column -->    
-	</div> <!-- end of row -->
-</div> <!-- end of grid -->
+  	</div> <!-- / fourteen wide column -->    
+	</div> <!-- / row -->
+</div> <!-- / grid -->
 </template>

@@ -24,4 +24,5 @@ accounts-password
 iron:router
 semantic:ui
 flemay:less-autoprefixer
+session
 jquery

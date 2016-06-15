@@ -50,4 +50,26 @@ Template.club_filter.helpers({
 	clubs:function() {
 		return Clubs.find();
 	},
+	same_user:function(user_id) {
+		var user = Meteor.users.findOne({_id:user_id});
+		var club_id = this._id;
+		if(user === club_id) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+});
+
+Template.club_filter.events({
+	'click .js-del-club':function(event) {
+		var club_id = this._id;
+		console.log(club_id);
+		//use jquery to hide the club
+		//then remove it at the end of the animation
+    $("#" + club_id).hide('slow', function(){
+			Clubs.remove({"_id":club_id});
+		});
+	},
 });
