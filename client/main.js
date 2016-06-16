@@ -39,7 +39,8 @@ Template.club_register.events({
 				img_link: img_link,
 				club_day: club_day,
 				club_desc: club_desc,
-				createdBy: Meteor.user()._id
+				createdBy: Meteor.user()._id,
+				users: 0
 			});
 			// console.log("insert actually works");
 		}
@@ -72,4 +73,9 @@ Template.club_filter.events({
 			Clubs.remove({"_id":club_id});
 		});
 	},
+	'click .js-join-club':function(event) {
+		var club_id = this._id;
+		Clubs.update({_id:club_id}, 
+			{$set: {rating: 2}});
+	}
 });
