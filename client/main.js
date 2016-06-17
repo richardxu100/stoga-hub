@@ -43,7 +43,7 @@ Template.club_register.events({
 				img_link: img_link,
 				club_day: club_day,
 				club_desc: club_desc,
-				// createdBy: Meteor.user()._id,
+				createdBy: Meteor.user()._id,
 				num_users: 0,
 				members: [Meteor.user()._id] //member id's, not names
 			});
@@ -55,15 +55,26 @@ Template.club_filter.helpers({
 	clubs:function() {
 		return Clubs.find();
 	},
-	same_user:function(user_id) {
-		var user = Meteor.users.findOne({_id:user_id});
+	// same_user:function(user_id) {
+	// 	var user = Meteor.users.findOne({_id:user_id});
+	// 	var club_id = this._id;
+	// 	if(user === club_id) {
+	// 		return true;
+	// 	}
+	// 	else {
+	// 		return false;
+	// 	}
+	// },
+	is_creator:function() {
+		var currentUser = Meteor.user()._id;
 		var club_id = this._id;
-		if(user === club_id) {
+		var currentClub = Clubs.findOne({_id: club_id});
+		console.log('Current User id: ' + currentUser);
+		console.log('Club id: ' + club_id);
+		if(currentClub.createdBy === currentUser) {
 			return true;
 		}
-		else {
-			return false;
-		}
+		// var clicked_club = Clubs.findOne({_id: club_id});
 	}
 });
 
