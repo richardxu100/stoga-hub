@@ -1,3 +1,5 @@
+import { Template } from 'meteor/templating';
+
 //Iron Router, routing the webpages
 Router.configure({
 	layoutTemplate: 'ApplicationLayout'
@@ -74,10 +76,11 @@ Template.club_filter.events({
 		});
 	},
 	'click .js-join-club':function(event) {
-		console.log(event);
-		var club_id = this.data_id;
-		Clubs.update({_id:this.data_id}, 
-			{$set: {rating: 2}});
+		console.log(this._id);
+		var club_id = this._id;
+		var num_users = Clubs.findOne({_id: club_id}).users;
+		Clubs.update(this._id, 
+			{$set: {users: num_users+1}});
 		 // Products.remove({_id: Products.findOne({name:"ABC"})._id});
 	}
 
