@@ -34,6 +34,7 @@ Template.club_register.events({
 		img_link = $('#img_link').val();
 		club_day = $('#club_day').val();
 		if (Meteor.user()) {
+			console.log(Meteor.user()._id);
 			Clubs.insert({
 				club_name: club_name,
 				club_pres: club_pres,
@@ -42,8 +43,9 @@ Template.club_register.events({
 				img_link: img_link,
 				club_day: club_day,
 				club_desc: club_desc,
-				createdBy: Meteor.user()._id,
-				users: 0
+				// createdBy: Meteor.user()._id,
+				num_users: 0,
+				members: [Meteor.user()._id] //member id's, not names
 			});
 		}
 	}
@@ -78,9 +80,22 @@ Template.club_filter.events({
 	'click .js-join-club':function(event) {
 		console.log(this._id);
 		var club_id = this._id;
-		var num_users = Clubs.findOne({_id: club_id}).users;
-		Clubs.update(this._id, 
-			{$set: {users: num_users+1}});
+		var clicked_club = Clubs.findOne({_id: club_id});
+		//check if the user is already in the club
+		var currentUser = Meteor.user()._id; //id of the current logged in user
+		console.log(clicked_club.members.includes(currentUser));
+		if(clicked_club.members.includes(currentUser)) {
+			return false; //hopefully do nothing (yes!, this ends the function)
+		}
+		//if the currentUser isn't in the club 
+		var members = Clubs.findOne({_id: club_id}).members;
+		//add 1 to the number of users
+		var num_users = Clubs.findOne({_id: club_id}).num_users;
+		Clubs.update(club_id, 
+			{$set: {num_users: num_users+1}});
+		//add the member_id of user to the Club collection
+		Clubs.update(club_id, 
+			{$set: {members: members.concat(Meteor.user()._id)}})
 		 // Products.remove({_id: Products.findOne({name:"ABC"})._id});
 	}
 
