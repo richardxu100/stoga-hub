@@ -100,7 +100,11 @@
 	            {{num_users}}
 	          </a>
 	          <div class="right floated content">
-	            <button class="js-join-club ui blue inverted button">Join</button>
+	          	{{#if not_member}}
+	           	 <button class="js-join-club ui blue inverted button">Join</button>
+							{{else}}
+								<button class="js-leave-club ui red inverted button">Leave</button>
+	            {{/if}}
 	            {{#if is_creator}}
 	            	<button class="js-del-club ui red inverted button">Delete</button>
             	{{/if}}

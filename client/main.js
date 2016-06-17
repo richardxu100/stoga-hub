@@ -44,7 +44,7 @@ Template.club_register.events({
 				club_day: club_day,
 				club_desc: club_desc,
 				createdBy: Meteor.user()._id,
-				num_users: 0,
+				num_users: 1,
 				members: [Meteor.user()._id] //member id's, not names
 			});
 		}
@@ -55,27 +55,26 @@ Template.club_filter.helpers({
 	clubs:function() {
 		return Clubs.find();
 	},
-	// same_user:function(user_id) {
-	// 	var user = Meteor.users.findOne({_id:user_id});
-	// 	var club_id = this._id;
-	// 	if(user === club_id) {
-	// 		return true;
-	// 	}
-	// 	else {
-	// 		return false;
-	// 	}
-	// },
-	is_creator:function() {
+	is_creator:function() { //checks if the logged in user created the current Club
 		var currentUser = Meteor.user()._id;
 		var club_id = this._id;
 		var currentClub = Clubs.findOne({_id: club_id});
-		console.log('Current User id: ' + currentUser);
-		console.log('Club id: ' + club_id);
 		if(currentClub.createdBy === currentUser) {
 			return true;
 		}
-		// var clicked_club = Clubs.findOne({_id: club_id});
-	}
+	},
+	not_member:function() {
+		var club_id = this._id;
+		var clicked_club = Clubs.findOne({_id: club_id});
+		//check if the user is already in the club
+		var currentUser = Meteor.user()._id; //id of the current logged in user
+		if(clicked_club.members.includes(currentUser)) {
+			return false; //hopefully do nothing (yes!, this ends the function)
+		}		
+		else {
+			return true;
+		}
+	},
 });
 
 Template.club_filter.events({
@@ -108,6 +107,22 @@ Template.club_filter.events({
 		Clubs.update(club_id, 
 			{$set: {members: members.concat(Meteor.user()._id)}})
 		 // Products.remove({_id: Products.findOne({name:"ABC"})._id});
+	},
+	'click .js-leave-club':function(event) {
+		//subtract 1 from the number of users
+		var club_id = this._id;
+		var num_users = Clubs.findOne({_id: club_id}).num_users;
+		Clubs.update(club_id, 
+			{$set: {num_users: num_users-1}});	
+		//remove loggedIn user from the Club collection
+		var currentUser = Meteor.user()._id; //id of the current logged in user
+		var clicked_club = Clubs.findOne({_id: club_id});
+		var indexOfMember = clicked_club.members.indexOf(currentUser);
+		var members = Clubs.findOne({_id: club_id}).members;
+		console.log("index of Member" + indexOfMember);
+		members.splice(indexOfMember, 1);
+		Clubs.update(club_id, 
+			{$set: {members: members}});
 	}
 
 });
