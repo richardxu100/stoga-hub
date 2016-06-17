@@ -21,6 +21,7 @@ Router.route('/clubs_page', function() {
 Template.club_register.events({
 	//do collection stuff
 	'click .js-register-club':function(event) {
+		event.preventDefault();
 		// console.log("insert worked?");
 		var club_name, club_pres, email, club_desc, room_num, club_day, img_link;
 		club_name = $('#club_name').val();
@@ -42,7 +43,6 @@ Template.club_register.events({
 				createdBy: Meteor.user()._id,
 				users: 0
 			});
-			// console.log("insert actually works");
 		}
 	}
 });
@@ -74,8 +74,11 @@ Template.club_filter.events({
 		});
 	},
 	'click .js-join-club':function(event) {
-		var club_id = this._id;
-		Clubs.update({_id:club_id}, 
+		console.log(event);
+		var club_id = this.data_id;
+		Clubs.update({_id:this.data_id}, 
 			{$set: {rating: 2}});
+		 // Products.remove({_id: Products.findOne({name:"ABC"})._id});
 	}
+
 });
