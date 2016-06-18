@@ -132,8 +132,13 @@ Template.club_filter.events({
 	},
 	'change .js-filter-day':function(event) {
     var club_day = $('#club_day option:selected').text();
+    if(club_day === "Any Day") {
+    	Session.set("dayFilter", undefined);
+    } 
+    else {
+   	 Session.set("dayFilter", club_day);        
+    }
     console.log('The day selected is: ' + club_day);  
-    Session.set("dayFilter", club_day);        
 	}
 
 });
