@@ -60,9 +60,9 @@ Template.onRendered(function () {
 	//renders semantic-ui dropdown
 	$('select.dropdown').dropdown();
 	//adds dimmer on club cards
-	$('.special.cards .image').dimmer({
-  	on: 'hover'
-	});
+	// $('.special.cards .image').dimmer({
+ //  	on: 'hover'
+	// });
 });
 
 Template.club_filter.helpers({
@@ -155,6 +155,9 @@ Template.club_filter.events({
     }
     console.log('The day selected is: ' + club_day);  
 	},
+	'mouseover .special.cards .image':function(event) {
+		$('.special.cards .image').dimmer({on: 'hover'});
+	}
 });
 
 //Jquery 
