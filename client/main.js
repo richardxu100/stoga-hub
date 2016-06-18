@@ -1,5 +1,3 @@
-import { Template } from 'meteor/templating';
-
 //Iron Router, routing the webpages
 Router.configure({
 	layoutTemplate: 'ApplicationLayout'
@@ -48,7 +46,23 @@ Template.club_register.events({
 				members: [Meteor.user()._id] //member id's, not names
 			});
 		}
-	}
+	},
+	'click .close.icon':function(event) {
+		$('.message .close').on('click', function() {
+	    $(this).closest('.message')
+	    .transition('fade');
+	  });	
+	},
+});
+
+//when the page is loaded
+Template.onRendered(function () {
+	//renders semantic-ui dropdown
+	$('select.dropdown').dropdown();
+	//adds dimmer on club cards
+	$('.special.cards .image').dimmer({
+  	on: 'hover'
+	});
 });
 
 Template.club_filter.helpers({
@@ -132,6 +146,7 @@ Template.club_filter.events({
 	},
 	'change .js-filter-day':function(event) {
     var club_day = $('#club_day option:selected').text();
+    //if the user selects "Any Day", then don't set a dayFilter 
     if(club_day === "Any Day") {
     	Session.set("dayFilter", undefined);
     } 
@@ -139,6 +154,10 @@ Template.club_filter.events({
    	 Session.set("dayFilter", club_day);        
     }
     console.log('The day selected is: ' + club_day);  
-	}
-
+	},
 });
+
+//Jquery 
+// $(document).click(function() {
+// 	console.log('jQuery works in client/main.js');
+// });
