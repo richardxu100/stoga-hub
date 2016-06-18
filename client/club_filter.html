@@ -6,8 +6,8 @@
     <div class="three wide column"> 
 			<h3 class="ui header">Club Filters</h3>
 			<!-- Day Selector Dropdown -->
-			<select class="ui dropdown">
-			  <option value="">Day</option>
+			<select class="js-filter-day ui dropdown" id="club_day">
+			  <option value="">Any Day</option>
 			  <option value="1">Monday</option>
 			  <option value="2">Tuesday</option>
 			  <option value="3">Wednesday</option>
@@ -15,62 +15,26 @@
 			  <option value="5">Friday</option>
 			</select>	
 			<select class="ui dropdown">
-			  <option value="">Type</option>
+			  <option value="">Any Type</option>
 			  <option value="1">Service</option>
 			  <option value="2">Music</option>
 			  <option value="3">Sport</option>
 			  <option value="4">Education</option>
 			  <option value="5">Other</option>
 			</select>			
-     <!--  <div class="ui toggle checkbox">
-        <input type="checkbox" name="public">
-        <label>Filter 1</label>
-      </div>
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="public">
-        <label>Filter 2</label>
-      </div>
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="public">
-        <label>Filter 3</label>
-      </div>
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="public">
-        <label>Filter 4</label>
-      </div>    
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="public">
-        <label>Filter 5</label>
-      </div>    
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="public">
-        <label>Filter 6</label>
-      </div>           -->
-      <!-- Days of the week -->
-<!-- 	    <div class="ui checkbox">
-	      <input type="checkbox" name="example">
-	      <label>Monday</label>
-	    </div>  
-	    <div class="ui checkbox">
-	      <input type="checkbox" name="example">
-	      <label>Tuesday</label>
-	    </div>  
-	    <div class="ui checkbox">
-	      <input type="checkbox" name="example">
-	      <label>Wednesday</label>
-	    </div>  
-	    <div class="ui checkbox">
-	      <input type="checkbox" name="example">
-	      <label>Thursday</label>
-	    </div>        
-	    <div class="ui checkbox">
-	      <input type="checkbox" name="example">
-	      <label>Friday</label>
-	    </div>         -->      
+			<div class="ui icon input">
+			  <input type="text" placeholder="Search...">
+			  <i class="circular search link icon"></i>
+			</div>			   
     </div>
 
     <!-- start of cards column -->
     <div class="thirteen wide column"> 
+    	<h2>
+    		{{#if filtering_day}}
+    		Showing clubs on {{day}}
+    		{{/if}}	
+    	</h2>
       <div class="ui centered special cards">
       	{{#each clubs}}
         <div class="card" id="{{_id}}"> <!-- start of card -->
@@ -109,7 +73,7 @@
 		            {{#if is_creator}}
 		            	<button class="js-del-club ui red inverted button">Delete</button>
 	            	{{/if}}
-							{{else}}
+							{{else}} <!-- show text telling to login -->
 								<p>Log in to join clubs!</p>
             	{{/if}}
 	          </div>

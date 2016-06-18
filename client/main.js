@@ -53,6 +53,9 @@ Template.club_register.events({
 
 Template.club_filter.helpers({
 	clubs:function() {
+		if(Session.get("dayFilter")) { //if they set a day filter
+			return Clubs.find({club_day: Session.get("dayFilter")});
+		}
 		return Clubs.find();
 	},
 	is_creator:function() { //checks if the logged in user created the current Club
@@ -75,6 +78,13 @@ Template.club_filter.helpers({
 			return true;
 		}
 	},
+  filtering_day:function(){
+    if (Session.get("dayFilter")){ //if they set a day filter      
+      return true;
+    } else {
+      return false;
+    }
+  },	
 });
 
 Template.club_filter.events({
@@ -93,10 +103,6 @@ Template.club_filter.events({
 		var clicked_club = Clubs.findOne({_id: club_id});
 		//check if the user is already in the club
 		var currentUser = Meteor.user()._id; //id of the current logged in user
-		console.log(clicked_club.members.includes(currentUser));
-		if(clicked_club.members.includes(currentUser)) {
-			return false; //hopefully do nothing (yes!, this ends the function)
-		}
 		//if the currentUser isn't in the club 
 		var members = Clubs.findOne({_id: club_id}).members;
 		//add 1 to the number of users
@@ -123,6 +129,11 @@ Template.club_filter.events({
 		members.splice(indexOfMember, 1);
 		Clubs.update(club_id, 
 			{$set: {members: members}});
+	},
+	'change .js-filter-day':function(event) {
+    var club_day = $('#club_day option:selected').text();
+    console.log('The day selected is: ' + club_day);  
+    Session.set("dayFilter", club_day);        
 	}
 
 });
