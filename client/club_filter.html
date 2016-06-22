@@ -15,14 +15,15 @@
 				  <option value="5">Friday</option>
 	        <option value="6">Any Day</option>
 				</select>	
-				<select class="ui dropdown">
-				  <option value="">Any Type</option>
-				  <option value="1">Service</option>
-				  <option value="2">Music</option>
-				  <option value="3">Sport</option>
-				  <option value="4">Education</option>
-				  <option value="5">Other</option>
-				</select>			
+        <select class="ui fluid dropdown" id="club_type">
+          <option value="">Club Type</option>
+          <option value="Music">Music</option>
+          <option value="Service">Service</option>
+          <option value="Sport">Sport</option>
+          <option value="Art">Art</option>
+          <option value="Activity">Activity</option>
+          <option value="Other">Other</option>
+        </select>
 				<div class="ui icon input">
 				  <input type="text" placeholder="Search...">
 				  <i class="circular search link icon"></i>
@@ -81,7 +82,7 @@
 		      </div> <!-- / card --> 
 
 				<!-- Club Description Modal -->
-				<div class="ui modal"> 
+				<div class="ui modal" id="{{_id}}"> 
 					<i class="close icon"></i>
 				  <div class="header">
 				  {{club_name}}

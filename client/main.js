@@ -157,19 +157,15 @@ Template.club_filter.events({
     }
     console.log('The day selected is: ' + club_day);  
 	},
-	// 'mouseover .special.cards .image':function(event) {
-	// 	$('.special.cards .blurring.dimmable.image').dimmer({on: 'hover'});
-	// },
+	'mouseover .special.cards .image':function(event) {
+		$('.special.cards .blurring.dimmable.image').dimmer({on: 'hover'});
+	},
 	'click .js-learn-more':function(event) {
 	  // $('.ui.modal').show().modal('show'); //Look up UI dimmer!
-		$('.ui.modal').modal('setting', 'closable', false)
+	  console.log('.modal#' + this._id);
+		$('.modal#' + this._id).modal('setting', 'closable', false)
 		  .modal('show')
 		;
 		// $('.ui.modal').modal('hide dimmer', 'closable', false)
 	}
 });
-
-//Jquery 
-// $(document).click(function() {
-// 	console.log('jQuery works in client/main.js');
-// });
