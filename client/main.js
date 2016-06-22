@@ -157,7 +157,11 @@ Template.club_filter.events({
 	},
 	'mouseover .special.cards .image':function(event) {
 		$('.special.cards .image').dimmer({on: 'hover'});
+	},
+	'click .js-learn-more':function(event) {
+	  $('.ui.modal').show().modal('show');
 	}
+
 });
 
 //Jquery 

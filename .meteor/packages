@@ -21,9 +21,11 @@ fourseven:scss
 iandouglas:accounts-ui-semantic-ui
 accounts-password
 iron:router
-semantic:ui
+jquery
+mizzao:jquery-ui
 flemay:less-autoprefixer
 session
-jquery
 autopublish
 aldeed:template-extension
+semantic:ui
+
