@@ -51,7 +51,27 @@
           </div>
         </div>
       </div>
-      <textarea id="club_desc" placeholder="Club Description" cols="30" rows="10"></textarea>
+      <div class="field">
+        <label>Short Description</label>
+        <div class="fields">
+          <div class="twelve wide field">
+            <input id="short_desc" type="text" placeholder='Ex. "A cool club where you save the planet"'>
+          </div>
+          <div class="four wide field">
+            <select class="ui fluid dropdown" id="club_type">
+              <option value="">Club Type</option>
+              <option value="Music">Music</option>
+              <option value="Service">Service</option>
+              <option value="Sport">Sport</option>
+              <option value="Art">Art</option>
+              <option value="Activity">Activity</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <textarea id="full_desc" placeholder="Full Club Description" cols="30" rows="10"></textarea>
     </form>
     <!-- <a href="/clubs_page"> -->
       <button class="ui fluid green button js-register-club">Submit</button>      

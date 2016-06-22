@@ -23,11 +23,12 @@ Template.club_register.events({
 	'click .js-register-club':function(event) {
 		event.preventDefault();
 		// console.log("insert worked?");
-		var club_name, club_pres, email, club_desc, room_num, club_day, img_link;
+		var club_name, club_pres, email, full_desc, room_num, club_day, img_link, short_desc;
 		club_name = $('#club_name').val();
 		club_pres = $('#club_pres').val();
 		email = $('#email').val();
-		club_desc = $('#club_desc').val();
+		full_desc = $('#full_desc').val();
+		short_desc = $('#short_desc').val();
 		room_num = $('#room_num').val();
 		img_link = $('#img_link').val();
 		club_day = $('#club_day').val();
@@ -40,7 +41,8 @@ Template.club_register.events({
 				room_num: room_num,
 				img_link: img_link,
 				club_day: club_day,
-				club_desc: club_desc,
+				short_desc: short_desc,
+				full_desc: full_desc,
 				createdBy: Meteor.user()._id,
 				num_users: 1,
 				members: [Meteor.user()._id] //member id's, not names
@@ -155,9 +157,9 @@ Template.club_filter.events({
     }
     console.log('The day selected is: ' + club_day);  
 	},
-	'mouseover .special.cards .image':function(event) {
-		$('.special.cards .image').dimmer({on: 'hover'});
-	},
+	// 'mouseover .special.cards .image':function(event) {
+	// 	$('.special.cards .blurring.dimmable.image').dimmer({on: 'hover'});
+	// },
 	'click .js-learn-more':function(event) {
 	  // $('.ui.modal').show().modal('show'); //Look up UI dimmer!
 		$('.ui.modal').modal('setting', 'closable', false)
