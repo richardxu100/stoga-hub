@@ -159,9 +159,12 @@ Template.club_filter.events({
 		$('.special.cards .image').dimmer({on: 'hover'});
 	},
 	'click .js-learn-more':function(event) {
-	  $('.ui.modal').show().modal('show');
+	  // $('.ui.modal').show().modal('show'); //Look up UI dimmer!
+		$('.ui.modal').modal('setting', 'closable', false)
+		  .modal('show')
+		;
+		// $('.ui.modal').modal('hide dimmer', 'closable', false)
 	}
-
 });
 
 //Jquery 

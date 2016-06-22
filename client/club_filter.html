@@ -1,115 +1,116 @@
 <!-- club_filter template includes the list of clubs in card format -->
 <template name="club_filter">
 	<div class="ui centered grid"> <!-- start of grid -->
-  <div class="row"> <!-- start of row -->
-		<!-- start of filter column -->		
-    <div class="three wide column"> 
-			<h3 class="ui header">Club Filters</h3>
-			<!-- Day Selector Dropdown -->
-			<select class="js-filter-day ui dropdown" id="club_day">
-			  <option value="">Any Day</option>
-			  <option value="1">Monday</option>
-			  <option value="2">Tuesday</option>
-			  <option value="3">Wednesday</option>
-			  <option value="4">Thursday</option>
-			  <option value="5">Friday</option>
-        <option value="6">Any Day</option>
-			</select>	
-			<select class="ui dropdown">
-			  <option value="">Any Type</option>
-			  <option value="1">Service</option>
-			  <option value="2">Music</option>
-			  <option value="3">Sport</option>
-			  <option value="4">Education</option>
-			  <option value="5">Other</option>
-			</select>			
-			<div class="ui icon input">
-			  <input type="text" placeholder="Search...">
-			  <i class="circular search link icon"></i>
-			</div>			   
-    </div>
-
-    <!-- start of cards column -->
-    <div class="thirteen wide column"> 
-    	<h2>
-    		{{#if filtering_day}}
-    		Showing clubs on {{day}}
-    		{{/if}}	
-    	</h2>
-      <div class="ui centered special cards">
-      	{{#each clubs}}
-        <div class="card" id="{{_id}}"> <!-- start of card -->
-	        <div class="content">
-	          <span class="meta">{{club_day}}</span>
-	          <div class="right floated meta">Room: {{room_num}}</div>
-	        </div>    
-	        <div class="blurring dimmable image">
-	          <div class="ui dimmer">
-	            <div class="content">
-	              <div class="center">
-	                <div class="js-learn-more ui inverted button">Learn More</div>
-	              </div>
-	            </div>
-	          </div>
-	          <img src="{{img_link}}">
-	        </div>
-	        <div class="content">
-	          <a class="header">{{club_name}}</a>
-	          <div class="meta">
-	            <span class="description">{{club_desc}}</span>
-	          </div>
-	        </div>
-	        <div class="extra content">
-	          <a>
-	            <i class="users icon"></i>
-	            {{num_users}}
-	          </a>
-	          <div class="right floated content">
-							{{#if currentUser}} <!-- if the user is logged in -->
-		          	{{#if not_member}}
-		           	 <button class="js-join-club ui blue inverted button">Join</button>
-								{{else}}
-									<button class="js-leave-club ui red inverted button">Leave</button>
-		            {{/if}}
-		            {{#if is_creator}}
-		            	<button class="js-del-club ui red inverted button">Delete</button>
+	  <div class="row"> <!-- start of row -->
+			<!-- start of filter column -->		
+	    <div class="three wide column"> 
+				<h3 class="ui header">Club Filters</h3>
+				<!-- Day Selector Dropdown -->
+				<select class="js-filter-day ui dropdown" id="club_day">
+				  <option value="">Any Day</option>
+				  <option value="1">Monday</option>
+				  <option value="2">Tuesday</option>
+				  <option value="3">Wednesday</option>
+				  <option value="4">Thursday</option>
+				  <option value="5">Friday</option>
+	        <option value="6">Any Day</option>
+				</select>	
+				<select class="ui dropdown">
+				  <option value="">Any Type</option>
+				  <option value="1">Service</option>
+				  <option value="2">Music</option>
+				  <option value="3">Sport</option>
+				  <option value="4">Education</option>
+				  <option value="5">Other</option>
+				</select>			
+				<div class="ui icon input">
+				  <input type="text" placeholder="Search...">
+				  <i class="circular search link icon"></i>
+				</div>			   
+	    </div>
+	    <!-- start of cards column -->
+	    <div class="thirteen wide column"> 
+	    	<h2>
+	    		{{#if filtering_day}}
+	    		Showing clubs on {{day}}
+	    		{{/if}}	
+	    	</h2>
+	      <div class="ui centered special cards">
+	      	{{#each clubs}}
+	        <div class="card" id="{{_id}}"> <!-- start of card -->
+		        <div class="content">
+		          <span class="meta">{{club_day}}</span>
+		          <div class="right floated meta">Room: {{room_num}}</div>
+		        </div>    
+		        <div class="blurring dimmable image">
+		          <div class="ui dimmer">
+		            <div class="content">
+		              <div class="center">
+		                <div class="js-learn-more ui inverted button">Learn More</div>
+		              </div>
+		            </div>
+		          </div>
+		          <img src="{{img_link}}">
+		        </div>
+		        <div class="content">
+		          <a class="header">{{club_name}}</a>
+		          <div class="meta">
+		            <span class="description">{{club_desc}}</span>
+		          </div>
+		        </div>
+		        <div class="extra content">
+		          <a>
+		            <i class="users icon"></i>
+		            {{num_users}}
+		          </a>
+		          <div class="right floated content">
+								{{#if currentUser}} <!-- if the user is logged in -->
+			          	{{#if not_member}}
+			           	 <button class="js-join-club ui blue inverted button">Join</button>
+									{{else}}
+										<button class="js-leave-club ui red inverted button">Leave</button>
+			            {{/if}}
+			            {{#if is_creator}}
+			            	<button class="js-del-club ui red inverted button">Delete</button>
+		            	{{/if}}
+								{{else}} <!-- show text telling to login -->
+									<p>Log in to join clubs!</p>
 	            	{{/if}}
-							{{else}} <!-- show text telling to login -->
-								<p>Log in to join clubs!</p>
-            	{{/if}}
-	          </div>
-	        </div> 
-	      </div> <!-- / card --> 
-	      {{/each}}
-    	</div>      
-  	</div> <!-- / fourteen wide column -->    
-	</div> <!-- / row -->
-</div> <!-- / grid -->
+		          </div>
+		        </div> 
+		      </div> <!-- / card --> 
 
-<!-- Club Description Modal -->
-	<div class="ui basic modal"> 
-	  <i class="close icon"></i>
-	  <div class="header">
-	    Club Name
-	  </div>
-	  <div class="image content">
-	    <div class="ui large image">
-	      <img src="http://searchengineland.com/figz/wp-content/seloads/2014/08/four-pandas-ss-1920.jpg">
-	    </div>
-	    <div class="description">
-	      <div class="ui header">Description</div>
-	      <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-	      <p>Is it okay to use this photo?</p>
-	    </div>
-	  </div>
-	  <div class="actions">
-	    <div class="ui positive right labeled icon button">
-	      Join Club
-	      <i class="checkmark icon"></i>
-	    </div>
-	    <div class="ui teal deny button">
-	      Explore More
-	    </div>
-	  </div>
-	</div>
+				<!-- Club Description Modal -->
+				<div class="ui modal"> 
+					<i class="close icon"></i>
+				  <div class="header">
+				  {{club_name}}
+				  </div>
+				  <div class="image content">
+				    <div class="ui large image">
+				      <img src="http://searchengineland.com/figz/wp-content/seloads/2014/08/four-pandas-ss-1920.jpg">
+				    </div>
+				    <div class="description">
+				      <div class="ui header">Description</div>
+				      <p>{{club_desc}}</p>
+				    </div>
+				  </div>
+				  <div class="actions">
+				    <div class="ui positive right labeled icon button">
+				      Join Club
+				      <i class="checkmark icon"></i>
+				    </div>
+				    <div class="ui teal deny button">
+				      Explore More
+				    </div>
+				  </div>	
+				</div>
+
+		      {{/each}}
+	    	</div>      
+	  	</div> <!-- / fourteen wide column -->    
+		</div> <!-- / row -->
+	</div> <!-- / grid -->
+
+
 </template>
