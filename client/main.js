@@ -184,6 +184,16 @@ Template.club_filter.events({
 	},
 	'click .js-learn-more':function(event) {
 		$('#modal_' + this._id).modal('setting', 'closable', false) //#modal_ up front is to emulate the {{modal_id}}
+			.modal({
+			    closable  : false,
+			    onDeny    : function(){
+			      window.alert('Wait not yet!'); //change this to be the leave club method
+			      return false;
+			    },
+			    onApprove : function() {
+			      window.alert('Approved!'); //change this to be the join club method
+			    }
+			  })		 
 		  .modal('show')
 		;
 	}

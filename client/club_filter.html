@@ -6,7 +6,7 @@
 	    <div class="three wide column"> 
 				<h3 class="ui header">Club Filters</h3>
 				<!-- Day Selector Dropdown -->
-				<select class="js-filter-day ui dropdown" id="club_day">
+				<select class="js-filter-day ui search dropdown" id="club_day">
 				  <option value="">Any Day</option>
 				  <option value="1">Monday</option>
 				  <option value="2">Tuesday</option>
@@ -15,15 +15,15 @@
 				  <option value="5">Friday</option>
 	        <option value="6">Any Day</option>
 				</select>	
-        <select class="js-filter-type ui fluid dropdown" id="club_type">
+        <select class="js-filter-type ui search dropdown" id="club_type">
           <option value="">Any Type</option>
-          <option value="Music">Music</option>
-          <option value="Service">Service</option>
-          <option value="Sport">Sport</option>
-          <option value="Art">Art</option>
-          <option value="Activity">Activity</option>
-          <option value="Other">Other</option>
-          <option value="Any Type">Any Type</option>
+          <option value="1">Music</option>
+          <option value="2">Service</option>
+          <!-- <option value="3">Sport</option> -->
+          <option value="4">Art</option>
+          <option value="5">Activity</option>
+          <option value="6">Other</option>
+          <option value="7">Any Type</option>
         </select>
 				<div class="ui icon input">
 				  <input type="text" placeholder="Search...">
@@ -104,7 +104,7 @@
 				      <i class="checkmark icon"></i>
 				    </div>
 					{{else}}
-						<div class="js-leave-club ui red inverted right labeled icon button">Leave<i class="checkmark icon"></i></div>					
+						<div class="js-leave-club negative ui red inverted right labeled icon button">Leave<i class="checkmark icon"></i></div>					
 				  {{/if}}  
 				    <div class="ui teal deny button">
 				      Explore More
