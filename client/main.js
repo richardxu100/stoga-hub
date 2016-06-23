@@ -94,13 +94,17 @@ Template.club_filter.helpers({
 			return true;
 		}
 	},
-  filtering_day:function(){
+  filtering_day:function() {
     if (Session.get("dayFilter")){ //if they set a day filter      
       return true;
     } else {
       return false;
     }
   },	
+  modal_id:function() {
+  	var modal_id = "modal_" + this._id; //this is so the id of a modal is different from the id of a card. Allows for individual modals to display on the click of learn more.
+  	return modal_id;  
+  }
 });
 
 Template.club_filter.events({
@@ -162,8 +166,8 @@ Template.club_filter.events({
 	},
 	'click .js-learn-more':function(event) {
 	  // $('.ui.modal').show().modal('show'); //Look up UI dimmer!
-	  console.log('.modal#' + this._id);
-		$('.modal#' + this._id).modal('setting', 'closable', false)
+	  // console.log();
+		$('#modal_' + this._id).modal('setting', 'closable', false)
 		  .modal('show')
 		;
 		// $('.ui.modal').modal('hide dimmer', 'closable', false)
