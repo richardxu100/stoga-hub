@@ -23,7 +23,7 @@ Template.club_register.events({
 	'click .js-register-club':function(event) {
 		event.preventDefault();
 		// console.log("insert worked?");
-		var club_name, club_pres, email, full_desc, room_num, club_day, img_link, short_desc;
+		var club_name, club_pres, club_type, email, full_desc, room_num, club_day, img_link, short_desc;
 		club_name = $('#club_name').val();
 		club_pres = $('#club_pres').val();
 		email = $('#email').val();
@@ -32,6 +32,7 @@ Template.club_register.events({
 		room_num = $('#room_num').val();
 		img_link = $('#img_link').val();
 		club_day = $('#club_day').val();
+		club_type = $('#club_type').val();
 		if (Meteor.user()) {
 			console.log(Meteor.user()._id);
 			Clubs.insert({
@@ -45,6 +46,7 @@ Template.club_register.events({
 				full_desc: full_desc,
 				createdBy: Meteor.user()._id,
 				num_users: 1,
+				club_type: club_type,
 				members: [Meteor.user()._id] //member id's, not names
 			});
 		}
@@ -69,7 +71,13 @@ Template.onRendered(function () {
 
 Template.club_filter.helpers({
 	clubs:function() {
-		if(Session.get("dayFilter")) { //if they set a day filter
+		if (Session.get("dayFilter") && Session.get("typeFilter")) { //if they set both filters
+			return Clubs.find({club_day: Session.get("dayFilter"), club_type: Session.get("typeFilter")});
+		}
+		else if (Session.get("typeFilter")) { //if they set a type filter
+			return Clubs.find({club_type: Session.get("typeFilter")});
+		}
+		else if(Session.get("dayFilter")) { //if they set a day filter
 			return Clubs.find({club_day: Session.get("dayFilter")});
 		}
 		return Clubs.find();
@@ -161,15 +169,22 @@ Template.club_filter.events({
     }
     console.log('The day selected is: ' + club_day);  
 	},
+	'change .js-filter-type':function(event) { //the same thing as the dayFilter but with club types
+    var club_type = $('#club_type option:selected').text();
+    if(club_type === "Any Type") {
+    	Session.set("typeFilter", undefined);
+    } 
+    else {
+   	 Session.set("typeFilter", club_type);        
+    }
+    console.log('The type selected is: ' + club_type);  
+	},	
 	'mouseover .special.cards .image':function(event) {
 		$('.special.cards .blurring.dimmable.image').dimmer({on: 'hover'});
 	},
 	'click .js-learn-more':function(event) {
-	  // $('.ui.modal').show().modal('show'); //Look up UI dimmer!
-	  // console.log();
-		$('#modal_' + this._id).modal('setting', 'closable', false)
+		$('#modal_' + this._id).modal('setting', 'closable', false) //#modal_ up front is to emulate the {{modal_id}}
 		  .modal('show')
 		;
-		// $('.ui.modal').modal('hide dimmer', 'closable', false)
 	}
 });

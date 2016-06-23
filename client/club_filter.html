@@ -15,14 +15,15 @@
 				  <option value="5">Friday</option>
 	        <option value="6">Any Day</option>
 				</select>	
-        <select class="ui fluid dropdown" id="club_type">
-          <option value="">Club Type</option>
+        <select class="js-filter-type ui fluid dropdown" id="club_type">
+          <option value="">Any Type</option>
           <option value="Music">Music</option>
           <option value="Service">Service</option>
           <option value="Sport">Sport</option>
           <option value="Art">Art</option>
           <option value="Activity">Activity</option>
           <option value="Other">Other</option>
+          <option value="Any Type">Any Type</option>
         </select>
 				<div class="ui icon input">
 				  <input type="text" placeholder="Search...">
@@ -89,7 +90,7 @@
 				  </div>
 				  <div class="image content">
 				    <div class="ui large image">
-				      <img src="http://searchengineland.com/figz/wp-content/seloads/2014/08/four-pandas-ss-1920.jpg">
+				      <img src="{{img_link}}">
 				    </div>
 				    <div class="description">
 				      <div class="ui header">Description</div>
@@ -97,10 +98,14 @@
 				    </div>
 				  </div>
 				  <div class="actions">
+				  {{#if not_member}}
 				    <div class="js-join-club ui positive right labeled icon button">
 				      Join Club
 				      <i class="checkmark icon"></i>
 				    </div>
+					{{else}}
+						<div class="js-leave-club ui red inverted right labeled icon button">Leave<i class="checkmark icon"></i></div>					
+				  {{/if}}  
 				    <div class="ui teal deny button">
 				      Explore More
 				    </div>
